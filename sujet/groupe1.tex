@@ -1,0 +1,125 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{amsmath, amssymb,amsfonts,  mathrsfs}
+\usepackage{amsthm}%\usepackage[T1]{fontenc}
+\usepackage{a4wide}
+\usepackage[latin1]{inputenc}
+%\usepackage{fancyhdr} %pour les hauts et bas de page
+\usepackage[francais]{babel}% donne de bonnes c\'esures  en francais
+\usepackage{titlesec}%pour modifier le style des sections
+\usepackage{float}%pour fixer les flottants
+\usepackage{url}%pour ecrire une adresse d'un site web
+\usepackage[all]{xy}%pour faire des diagrammes
+\usepackage[dvips]{graphicx}
+\usepackage{nopageno} % pour supproimer les numeros des pages
+
+\usepackage{pdfsync}
+\pagestyle{myheadings}
+\markright{ENSIIE 1A Année 2016/2017 \\ MPM2 Projet Math}
+%\pagenumbering{empty}
+
+\newtheorem{definition}{Définition}
+
+%%%%%%%%%  interlignes et indentation
+
+\begin{document}
+\begin{center}
+\textbf{\huge{Groupe 1: Estimation du flot optique}}
+\end{center}
+\medskip
+
+\section{Organisation}
+
+\subsection{Règles}
+
+\begin{itemize}
+\item 3 séances de 3h30.
+\item Travail réalisé en trinôme.
+\item Un travail copié ou effectué en collaboration entre $N$ trinôme divise les
+  notes par $N$.
+\item LES DOCUMENTS ET SOURCES RENDUS EN RETARD NE SERONT PAS PRIS EN COMPTE.
+\end{itemize}
+
+\subsection{Objectifs et contenu du travail}
+
+Les projets math consistent en la résolution mathématique d'un problème et à sa
+mise en oeuvre informatique. Ce qui est attendu est donc :
+
+\begin{itemize}
+\item Un rapport écrit présentant de manière claire le problème ainsi que sa
+  solution et une description des algorithmes proposés.
+\item Les sources du programme développé ainsi qu'un script permettant la
+  compilation et l'exécution de celui-ci. Vous utilisez le language C++.
+\end{itemize}
+
+\section{Sujet}
+
+
+Le but de ce projet est de déterminer le flot optique entre deux images succéssives d'une séquence.
+Vous utiliserz pour cela la stratégie de Combinaison Locale-Globale présenté dans l'article
+[1]. 
+
+\subsection{Gestion d'une image PNG}
+
+\begin{enumerate}
+  \item En vous inspirant de l'exemple fourni, écrivez une fonction qui prend en paramètre une image
+    au format png et qui retourne une \emph{png\_structp}.
+  \item Ecrivez une fonction permettant de convertir une \emph{png\_structp} en un tableau à deux
+    dimensions. (Utile: Ecrivez des fonctions retournant la largeur ($n_x$) et la hauteur ($n_y$) 
+    d'une image)
+  \item Ecrivez une fonction permettant de sauvegarder les vecteurs sous la forme
+
+    \begin{center}
+    \begin{tabular}{|ll|}
+      \hline
+      $v_x(0,0)$ & $v_y(0,0)$\\
+      $v_x(1,0)$ & $v_y(1,0)$\\
+      $v_x(2,0)$ & $v_y(2,0)$\\
+      $\vdots$ & $\vdots$\\
+      $v_x(n_x-1,0)$ & $v_y(n_x-1,0)$\\
+      $v_x(0,1)$ & $v_y(0,1)$\\
+      $v_x(1,1)$ & $v_y(1,1)$\\
+      $\vdots$ & $\vdots$\\
+      $v_x(n_x-1,n_y-1)$ & $v_y(n_x-1,n_y-1)$\\
+      \hline
+    \end{tabular}
+    \end{center}
+\end{enumerate}
+
+\subsection{Flou gaussien}
+
+\begin{enumerate}
+  \item Donnez l'équation de la densité de probabilité $g(x,y)$ de la loi normale en dimension 2.
+  \item Quel est l'effet du paramètre de déviation standart $\sigma$ présent dans la formules ?
+  \item Déterminer le paramètre $\mu$ en fonction de $\sigma$ tel que
+    $$P(m-\mu < X < m+\mu)\approx 0.95.$$
+  \item Afin d'appliquer un flou gaussien à une image, nous devons d'abord déterminer le filtre
+    gaussien à appliquer. Ecrivez une fonction qui créer ce filtre à partir des paramètres $\sigma$
+    et $\mu$.
+  \item Ecrivez une fonction qui applique un flou gaussien de paramètre $\sigma$ à une image (sous
+    forme de tableau).
+  \item Soit une image $f$ et un filtre gaussien $K$ de paramètre $\sigma=4$. Donnez
+    approximativement le nombre d'opérations nécessaires afin d'effectuer la convolution $K_\sigma
+    \star f$ dans le cas où $\mu=2\sigma$. et $\mu=3\sigma$.
+\end{enumerate}
+
+\subsection{Estimation du flot optique}
+
+\begin{enumerate}
+  \item A l'aide de la méthode des différences finis déterminez $\frac{\partial f}{\partial x}$ et 
+    $\frac{\partial f}{\partial x}$ à l'odre 4.
+  \item Déterminez la matrice donnée par l'équation 
+    $$J_\rho = K_\rho\star(\nabla f, \nabla f^T)$$.
+  \item Déterminez le système d'Euler-Lagrange associé au problème de minimisation de la
+    fonctionnelle
+    $$E = \int_{\Omega}(u^TJ_\rho u + \alpha|\nabla u|^2)dxdy.$$
+  \item A l'aide de la méthode SOR résolvez ce système.
+\end{enumerate}
+
+\vfill
+
+[1] Andres Bruhn and Joachim Weickert, Lucas/Kanade Meets Horn/Schunck: Combining Local Global 
+Optic Flow Methods, International Journal of Computer Vision, vol. 61, no. 3, pp. 211- 231, 2005
+
+
+\end{document}
