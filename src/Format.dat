@@ -1,0 +1,27 @@
+------------------------------
+
+Exemple de paramètres pouvant être prit pour la simulation
+
+alpha = 950
+sigma = 1.7
+rho = 4.5
+
+-------------------------------
+
+Le valeurs des images Venus10 et Venus11 sont rangées dans les fichiers Venus10.dat et Venus11.dat
+de la façon suivante.
+
+(x,y)
+-----
+(0,0)
+(0,1)
+(0,2)
+(0,3)
+...
+(1,0)
+(1,1)
+(1,2)
+(1,3)
+...
+
+
