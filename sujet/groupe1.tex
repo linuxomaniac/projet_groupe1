@@ -6,6 +6,7 @@
 \usepackage[latin1]{inputenc}
 %\usepackage{fancyhdr} %pour les hauts et bas de page
 \usepackage[francais]{babel}% donne de bonnes c\'esures  en francais
+\usepackage[T1]{fontenc}% demandé par pdflatex
 \usepackage{titlesec}%pour modifier le style des sections
 \usepackage{float}%pour fixer les flottants
 \usepackage{url}%pour ecrire une adresse d'un site web
@@ -35,7 +36,7 @@
 \begin{itemize}
 \item 3 séances de 3h30.
 \item Travail réalisé en trinôme.
-\item Un travail copié ou effectué en collaboration entre $N$ trinôme divise les
+\item Un travail copié ou effectué en collaboration entre $N$ trinômes divise les
   notes par $N$.
 \item LES DOCUMENTS ET SOURCES RENDUS EN RETARD NE SERONT PAS PRIS EN COMPTE.
 \end{itemize}
@@ -55,8 +56,8 @@ mise en oeuvre informatique. Ce qui est attendu est donc :
 \section{Sujet}
 
 
-Le but de ce projet est de déterminer le flot optique entre deux images succéssives d'une séquence.
-Vous utiliserz pour cela la stratégie de Combinaison Locale-Globale présenté dans l'article
+Le but de ce projet est de déterminer le flot optique entre deux images successives d'une séquence.
+Vous utiliserz pour cela la stratégie de Combinaison Locale-Globale présentée dans l'article
 [1]. 
 
 \subsection{Gestion d'une image PNG}
@@ -90,7 +91,7 @@ Vous utiliserz pour cela la stratégie de Combinaison Locale-Globale présenté dan
 
 \begin{enumerate}
   \item Donnez l'équation de la densité de probabilité $g(x,y)$ de la loi normale en dimension 2.
-  \item Quel est l'effet du paramètre de déviation standart $\sigma$ présent dans la formules ?
+  \item Quel est l'effet du paramètre de déviation standard $\sigma$ présent dans la formules ?
   \item Déterminer le paramètre $\mu$ en fonction de $\sigma$ tel que
     $$P(m-\mu < X < m+\mu)\approx 0.95.$$
   \item Afin d'appliquer un flou gaussien à une image, nous devons d'abord déterminer le filtre
@@ -106,7 +107,7 @@ Vous utiliserz pour cela la stratégie de Combinaison Locale-Globale présenté dan
 \subsection{Estimation du flot optique}
 
 \begin{enumerate}
-  \item A l'aide de la méthode des différences finis déterminez $\frac{\partial f}{\partial x}$ et 
+  \item À l'aide de la méthode des différences finies déterminez $\frac{\partial f}{\partial x}$ et 
     $\frac{\partial f}{\partial x}$ à l'odre 4.
   \item Déterminez la matrice donnée par l'équation 
     $$J_\rho = K_\rho\star(\nabla f, \nabla f^T)$$.
